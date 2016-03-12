@@ -3,6 +3,11 @@ CLI setup script for kankun wifi plugs
 
 Connects through SSH to the plug, configures it to be on the wifi network specified, copies any files in the `setup` folder, restarts the plug and then runs the `install.sh` file.
 
+## Setup
+1. You need Node and npm installed
+2. Clone this repo
+3. Run npm install inside the repo
+
 ## How to use
 1. Add any files you want copied to the plug into the `setup` folder.
 2. Edit `setup/install.sh` with any commands you want to run on the first reboot.
