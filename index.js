@@ -21,7 +21,7 @@ sshConnect = function(password) {
             return new bluebird(function(resolve, reject) {
                 stream.on('close', function(code, signal) {
                     console.log('Setup directory created on plug');
-                    resolve(conn.execAsync('wget -O /setup.sh "http://' + ip.address() + ':3000/setup.sh"'));
+                    resolve(conn.execAsync('wget -O /etc/hotplug.d/iface/40-setup "http://' + ip.address() + ':3000/setup.sh"'));
                 });
             });
         }).then(function(stream) {
@@ -99,12 +99,6 @@ sshConnect = function(password) {
             return new bluebird(function(resolve, reject) {
                 stream.on('close', function(code, signal) {
                     resolve(conn.execAsync('echo -e "\nconfig interface \'wwan\'\n\toption proto dhcp\n" >> /etc/config/network'));
-                });
-            });
-        }).then(function(stream) {
-            return new bluebird(function(resolve, reject) {
-                stream.on('close', function(code, signal) {
-                    resolve(conn.execAsync('sed -ie "s/^exit/sh \\/setup.sh\\nexit/" /etc/rc.local'));
                 });
             });
         }).then(function(stream) {
